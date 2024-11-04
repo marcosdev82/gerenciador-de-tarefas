@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+// index.js ou main.js
+import React from 'react';
+import ReactDOM from 'react-dom/client'; // Importa o react-dom com o createRoot
+import GerenciadorDeTarefas from './gerenciador-de-tarefas';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+it('Deve renderizar o projeto sem erros', () => {
+   const div = document.createElement('div')
+   ReactDOM.render(<GerenciadorDeTarefas />, div)
+   ReactDOM.unMountComponentAtNote(div)
 });

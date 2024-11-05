@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './gerenciador-de-tarefas.css';
-import ListTarefas from './ListTarefas';
+import ListTarefas from './listar/listar-tarefas.js';
 import CadastrarTarefas from './CadastrarTarefas';
 import AtualizarTarefas from './AtualizarTarefas';
 

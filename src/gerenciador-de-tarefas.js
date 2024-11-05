@@ -1,9 +1,25 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './gerenciador-de-tarefas.css';
+import ListTarefas from './ListTarefas';
+import CadastrarTarefas from './CadastrarTarefas';
+import AtualizarTarefas from './AtualizarTarefas';
 
-function GerenciadorDeTarefas () {
+const routes = [
+  { path: "/", element: <ListTarefas /> },
+  { path: "/cadastrar", element: <CadastrarTarefas /> },
+  { path: "/atualizar/:id", element: <AtualizarTarefas /> }
+];
+
+function GerenciadorDeTarefas() {
   return (
-    <h1>Gerenciado de tarefas</h1>
+    <Router>
+      <Routes>
+        {routes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element} />
+        ))}
+      </Routes>
+    </Router>
   );
 }
 

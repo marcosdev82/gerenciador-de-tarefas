@@ -1,7 +1,7 @@
 import React from 'react';
 
-function CadastrarTarefas() {
+function CadastrarTarefa() {
     return <h1>Cadastrar tarefa</h1>
 }
 
-export default CadastrarTarefas;
+export default CadastrarTarefa;

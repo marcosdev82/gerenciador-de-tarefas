@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './gerenciador-de-tarefas.css';
 
 import ListTarefas from './listar/listar-tarefas';
-import CadastrarTarefa from './CadastrarTarefa';
-import AtualizarTarefa from './AtualizarTarefa';
+import CadastrarTarefa from './cadastrar/cadastar-tarefa';
+import AtualizarTarefa from './atualizar/autalizar-tarefa'
+
 
 const routes = [
   { path: "/", element: <ListTarefas /> },

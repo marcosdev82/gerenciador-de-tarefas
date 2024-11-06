@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal, Container, Card } from 'react-bootstrap';
 import { Navigate, Link } from 'react-router-dom';
+import { Tarefa } from '../models/tarefa.model';
 
 function CadastrarTarefa() {
 
     const [tarefa, setTarefa] = useState('')
-    const [formValidate, seFormValidate] = useState(false);
+    const [formValidate, setFormValidate] = useState(false);
     const [exibirModal, setExibirModal] = useState(false);
 
     function cadastrar(event) {
-
+        event.preventDefault();
+        setFormValidate(true);
+        if (event.currentTarget.checkValidity() === true) {
+            // Obtém as tarefas
+            const tarefasDb = localStorage['tarefas']
+            const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [] 
+            // Persiste a tarefa
+        }
     }
 
     function handleTxtTarefa(event) {

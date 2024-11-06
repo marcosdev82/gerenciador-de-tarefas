@@ -1,7 +1,7 @@
 function Tarefa(id, nome, concluida) {
     this.id = id;
     this.nome = nome;
-    this.concluida =concluida;
+    this.concluida = concluida;
 
     return {
         id: id,

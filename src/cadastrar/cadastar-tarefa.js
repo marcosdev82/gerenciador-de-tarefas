@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal, Container, Card } from 'react-bootstrap';
-import { Navigate, Link } from 'react-router-dom';
-import { Tarefa } from '../models/tarefa.model';
+import { useNavigate, Link } from 'react-router-dom';
+import Tarefa from '../models/tarefa.model';
 
 function CadastrarTarefa() {
 
-    const [tarefa, setTarefa] = useState('')
+    const [tarefa, setTarefa] = useState('');
     const [formValidate, setFormValidate] = useState(false);
     const [exibirModal, setExibirModal] = useState(false);
+    const navigate = useNavigate(); // Inicializa o hook para navegação
 
     function cadastrar(event) {
         event.preventDefault();
@@ -17,18 +18,19 @@ function CadastrarTarefa() {
             const tarefasDb = localStorage['tarefas'];
             const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
             // Persiste a tarefa
-            tarefas.push(new tarefa(new Date().getTime(), tarefa, false));
+            tarefas.push(new Tarefa(new Date().getTime(), tarefa, false));
             localStorage['tarefas'] = JSON.stringify(tarefas);
-            setExibirModal(true)
+            setExibirModal(true);
         }
     }
 
     function handleTxtTarefa(event) {
-        setTarefa(event.target.value)
+        setTarefa(event.target.value);
     }
 
     function handleFecharModal() {
-        Navigate('/')
+        setExibirModal(false); // Fecha o modal antes de redirecionar
+        navigate('/'); // Redireciona para a página inicial
     }
 
     return (
@@ -80,7 +82,7 @@ function CadastrarTarefa() {
                                 variant="success"
                                 onClick={handleFecharModal}
                             >
-                            Cotinuar
+                                Continuar
                             </Button>
                         </Modal.Footer>
                     </Modal>

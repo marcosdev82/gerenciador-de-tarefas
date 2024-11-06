@@ -14,9 +14,12 @@ function CadastrarTarefa() {
         setFormValidate(true);
         if (event.currentTarget.checkValidity() === true) {
             // Obtém as tarefas
-            const tarefasDb = localStorage['tarefas']
-            const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [] 
+            const tarefasDb = localStorage['tarefas'];
+            const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
             // Persiste a tarefa
+            tarefas.push(new tarefa(new Date().getTime(), tarefa, false));
+            localStorage['tarefas'] = JSON.stringify(tarefas);
+            setExibirModal(true)
         }
     }
 

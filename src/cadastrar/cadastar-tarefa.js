@@ -34,6 +34,20 @@ function CadastrarTarefa() {
                             </Link>
                         </Form.Group>
                     </Form>
+                    <Modal show={true}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Sucesso</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            Trefa adicionada com sucesso!
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button 
+                                variant="success">
+                                    Cotinuar
+                                </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </Card.Body>
             </Card> 
         </Container>

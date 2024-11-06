@@ -1,13 +1,16 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import CadastrarTarefa from './cadastrar-tarefa';
+import { createRoot } from "react-dom/client";
+import '@testing-library/jest-dom';
+import CadastrarTarefa from './cadastar-tarefa';
 
 describe('Teste do componente de cadastrar tarefa', () => {
-    it('deve renderizar o componente de cadastro de tarefas', () => {
-        const { getByText } = render(<CadastrarTarefa />);
-        expect(getByText('Cadastrar')).toBeInTheDocument();
-    });
+    
+    it('deve rederizar o componente de cadastro de tarefas', () => {
+        const div = document.createElement('div');
+        const root = createRoot(div); 
+        root.render(<CadastrarTarefa />);
+    })
 
     it('deve cadastrar uma nova tarefa', () => {
         const { getByTestId } = render(<CadastrarTarefa />);

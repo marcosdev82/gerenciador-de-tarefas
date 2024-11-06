@@ -3,12 +3,33 @@ import { Button, Form, Modal, Container, Card } from 'react-bootstrap';
 import { Navigate, Link } from 'react-router-dom';
 
 function CadastrarTarefa() {
+
+    const [tarefa, setTarefa] = useState('')
+    const [formValidate, seFormValidate] = useState(false);
+    const [exibirModal, setExibirModal] = useState(false);
+
+    function cadastrar(event) {
+
+    }
+
+    function handleTxtTarefa(event) {
+        setTarefa(event.target.value)
+    }
+
+    function handleFecharModal() {
+        Navigate('/')
+    }
+
     return (
         <Container className="my-5">
             <h3 className='text-center'>Cadastrar</h3>
             <Card className="p-5">
                 <Card.Body> 
-                    <Form>
+                    <Form
+                        validated={formValidate}
+                        noValidate
+                        onSubmit={cadastrar}
+                    >
                         <Form.Group>
                             <Form.Label>Tarefa</Form.Label>
                             <Form.Control
@@ -16,7 +37,9 @@ function CadastrarTarefa() {
                                 placeholder='Digite a tarefa'
                                 minLength='5'
                                 maxLength='100'
-                                required 
+                                required
+                                value={tarefa}
+                                onChange={handleTxtTarefa}
                             />
                             <Form.Control.Feedback type="invalid">
                                 A tarefa deve conter ao menos 5 caracteres.
@@ -34,18 +57,20 @@ function CadastrarTarefa() {
                             </Link>
                         </Form.Group>
                     </Form>
-                    <Modal show={true}>
+                    <Modal show={exibirModal} onHide={handleFecharModal}>
                         <Modal.Header closeButton>
                             <Modal.Title>Sucesso</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            Trefa adicionada com sucesso!
+                            Tarefa adicionada com sucesso!
                         </Modal.Body>
                         <Modal.Footer>
                             <Button 
-                                variant="success">
-                                    Cotinuar
-                                </Button>
+                                variant="success"
+                                onClick={handleFecharModal}
+                            >
+                            Cotinuar
+                            </Button>
                         </Modal.Footer>
                     </Modal>
                 </Card.Body>

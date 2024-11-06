@@ -7,7 +7,7 @@ function CadastrarTarefa() {
         <Container className="my-5">
             <h3 className='text-center'>Cadastrar</h3>
             <Card className="p-5">
-                <Card.Body>
+                <Card.Body> 
                     <Form>
                         <Form.Group>
                             <Form.Label>Tarefa</Form.Label>
@@ -21,6 +21,17 @@ function CadastrarTarefa() {
                             <Form.Control.Feedback type="invalid">
                                 A tarefa deve conter ao menos 5 caracteres.
                             </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group className="my-2 text-center">
+                            <Button 
+                                variant='success'
+                                type='submit'>
+                                Cadastrar
+                            </Button>
+                            
+                            <Link to='/' className='btn btn-light'>
+                                Voltar
+                            </Link>
                         </Form.Group>
                     </Form>
                 </Card.Body>

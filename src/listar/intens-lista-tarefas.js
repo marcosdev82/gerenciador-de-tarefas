@@ -6,7 +6,14 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 function ItensListaTarefas(props){
-    return ;
+    return props.tarefas.map(tarefa => 
+        <tr key={tarefa.id} data-testid="tarefa">
+            <td width="75%" 
+            data-testid="nome-tarefa">
+                {tarefa.nome}
+            </td>
+        </tr>
+    );
 }
 
 ItensListaTarefas.prototype = {

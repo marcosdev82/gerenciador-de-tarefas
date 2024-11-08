@@ -1,5 +1,4 @@
 import React from "react";
-import ListTarefas from "./listar-tarefas";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -20,11 +19,11 @@ function ItensListaTarefas(props){
                 {tarefa.nome}
             </td>
             <td className="text-right">
-                <link to={/atualizar/ + tarefa.id}
+                <Link to={/atualizar/ + tarefa.id}
                     className={tarefa.concluida ? 'hidden' : 'btn btn-warning btn-sm'}
                 >
                     <FontAwesomeIcon icon={faEdit} />
-                </link>
+                </Link>
             </td>
         </tr>
     );
@@ -35,4 +34,4 @@ ItensListaTarefas.prototype = {
     recarregarTarefas: PropTypes.func.isRequired
 }
 
-export default ListTarefas;
+export default ItensListaTarefas;

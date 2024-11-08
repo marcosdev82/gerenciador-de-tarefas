@@ -12,6 +12,13 @@ function ItensListaTarefas(props){
             data-testid="nome-tarefa">
                 {tarefa.nome}
             </td>
+            <td className="text-right">
+                <link to={/atualizar/ + tarefa.id}
+                    className={tarefa.concluida ? 'hidden' : 'btn btn-warning btn-sm'}
+                >
+                    <FontAwesomeIcon icon={faEdit} />
+                </link>
+            </td>
         </tr>
     );
 }

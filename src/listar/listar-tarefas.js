@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { ItensListaTarefas } from './intens-lista-tarefas';
 
 function ListTarefas() {
 
@@ -41,12 +42,10 @@ function ListTarefas() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Aqui você pode mapear suas tarefas para exibir na tabela */}
-                    {/* Exemplo: */}
-                    {/* <tr>
-                        <td>Nome da tarefa</td>
-                        <td>Detalhes ou Ações</td>
-                    </tr> */}
+                    <ItensListaTarefas  
+                    tarefas={tarefas}
+                    carregarTarefa={setCarregarTarefa}
+                    />
                 </tbody>
             </Table>
         </div>

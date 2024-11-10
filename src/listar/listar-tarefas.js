@@ -43,8 +43,8 @@ function ListTarefas() {
                 </thead>
                 <tbody>
                     <ItensListaTarefas  
-                    tarefas={tarefas}
-                    carregarTarefa={setCarregarTarefa}
+                        tarefas={tarefas}
+                        carregarTarefa={setCarregarTarefa}
                     />
                 </tbody>
             </Table>

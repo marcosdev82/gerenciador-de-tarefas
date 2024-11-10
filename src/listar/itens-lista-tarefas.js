@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function ItensListaTarefas(props){
 
     function marcarConcluida(tarefa) {
-        return tarefa.concluida ? 'line-trhought' : 'none';
+        return tarefa.concluida ? 'line-trhough' : 'none';
     }
 
     return props.tarefas.map(tarefa => 

@@ -13,6 +13,10 @@ function ConcluirTarefa(props) {
         setExibirModal(true);
     } 
 
+    function handleFecharModal() {
+        setExibirModal(false)
+    }
+
     return (
         <span className={props.className}>
             <Button className="btn-sm" onClick={handleAbirModal}

@@ -8,6 +8,11 @@ function ConcluirTarefa(props) {
 
     const [exibirModal, setExibirModal] = useState(false);
 
+    function handleAbirModal(event) {
+        event.preventDefault();
+        setExibirModal(true);
+    } 
+
     return (
         <span className={props.className}>
             <Button className="btn-sm" onClick={handleAbirModal}

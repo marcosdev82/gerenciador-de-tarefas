@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 function ConcluirTarefa(props) {
@@ -7,7 +7,7 @@ function ConcluirTarefa(props) {
 
 }
 
-ConcluirTarefa.protoTypes = {
+ConcluirTarefa.propTypes = {
     tarefa: PropTypes.object.isRequired,
     carregarTarefa: PropTypes.func.isRequired,
     className: PropTypes.string.isRequired

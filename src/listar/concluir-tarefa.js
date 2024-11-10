@@ -6,6 +6,8 @@ import { faClipboard, faClipboardCheck } from "@fortawesome/free-solid-svg-icons
 
 function ConcluirTarefa(props) {
 
+    const [exibirModal, setExibirModal] = useState(false);
+
     return (
         <span className={props.className}>
             <Button className="btn-sm" onClick={handleAbirModal}

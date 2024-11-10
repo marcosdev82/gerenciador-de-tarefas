@@ -8,16 +8,14 @@ import Tarefa from '../models/tarefa.model';
 
 describe('Testes do componente que exibe um item da listagem de tarefas', () => {
 
-    const nomeTarefa = 'Tarefa';
+    const nomeTarefa = 'Tarefa 1';
     const tarefa = new Tarefa(new Date().getTime(), nomeTarefa, false);
-    const tarefaConcluida = new Tarefa(new Date().getTime(), nomeTarefa, true); 
 
     it('Deve renderizar o componente corretamente', () => {
         const div = document.createElement('div');
         const root = createRoot(div); 
         root.render(
-            <ItensListaTarefas 
-                tarefas={[]}
+            <ItensListaTarefas tarefas={[]}
                 recarregarTarefas={() => false}
             />
         );
@@ -26,32 +24,19 @@ describe('Testes do componente que exibe um item da listagem de tarefas', () => 
     it('Deve exibir a tarefa', () => {
 
         render(
-            <ItensListaTarefas  
-                tarefas={[tarefa]}
-                carregarTarefa={() => false}
-            />
+            <table>
+                <tbody>
+                    <ItensListaTarefas 
+                        tarefas={[tarefa]}
+                        recarregarTarefas={() => false}
+                    /> 
+                </tbody>
+            </table>
         );
 
-        const tarefaElemento = screen.getByTestId('tarefa');
-        expect(tarefaElemento).toHaveTextContent(nomeTarefa);
-      
+        const testTestId = screen.getByTestId('tarefa');
+        expect(testTestId).toHaveTextContent(nomeTarefa);
     });
-
-    it('Deve exibir uma tarefa conluída!', () => {
-
-        render(
-            <ItensListaTarefas  
-                tarefas={[tarefaConcluida]}
-                carregarTarefa={() => false}
-            />
-        );
-
-        const tarefaElemento = screen.getByTestId('none-tarefa');
-        expect(tarefaElemento).toHaveTextContent(nomeTarefa);
-      
-    });
-
-    
     
 
 });

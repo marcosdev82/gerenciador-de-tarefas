@@ -80,7 +80,7 @@ function ConcluirTarefa(props) {
 ConcluirTarefa.propTypes = {
     tarefa: PropTypes.object.isRequired,
     recarregarTarefas: PropTypes.func.isRequired, // Corrigido para 'recarregarTarefas' no lugar de 'carregarTarefa'
-    className: PropTypes.string.isRequired
+    className: PropTypes.string
 };
 
 export default ConcluirTarefa;

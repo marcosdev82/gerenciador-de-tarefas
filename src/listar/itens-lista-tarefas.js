@@ -40,7 +40,7 @@ function ItensListaTarefas(props){
 
 ItensListaTarefas.prototype = {
     tarefas: PropTypes.array.isRequired,
-    recarregarTarefas: PropTypes.func.isRequired
+    recarregarTarefas: PropTypes.func.isRequired,
 }
 
 export default ItensListaTarefas;

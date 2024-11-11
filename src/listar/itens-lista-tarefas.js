@@ -26,8 +26,8 @@ function ItensListaTarefas(props){
                 <ConcluirTarefa 
                     tarefa={tarefa}
                     recarregarTarefas={props.recarregarTarefas}
-                    className={tarefa.concluida ? 'hidden' : ''} 
-                />
+                    className={tarefa.concluida ? 'hidden' : '' } 
+                    />
                 <Link to={`/atualizar/${tarefa.id}`}
                     className={tarefa.concluida ? 'hidden' : 'btn btn-warning btn-sm'}
                 >

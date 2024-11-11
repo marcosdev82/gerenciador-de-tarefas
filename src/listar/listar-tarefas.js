@@ -8,7 +8,7 @@ import ItensListaTarefas from './itens-lista-tarefas';
 function ListTarefas() {
 
     const [tarefas, setTarefas] = useState([])
-    const [carregarTarefa, setCarregarTarefa] = useState(true)
+    const [carregarTarefa, setCarregarTarefas] = useState(true)
 
     useEffect(() => {
         function obterTarefa() {
@@ -19,10 +19,9 @@ function ListTarefas() {
 
         if (carregarTarefa) {
             obterTarefa();
-            setCarregarTarefa(false);
+            setCarregarTarefas(false);
         }
     },[carregarTarefa]);
-
 
     return (
         <div className="text-center">
@@ -44,8 +43,8 @@ function ListTarefas() {
                 </thead>
                 <tbody>
                     <ItensListaTarefas  
-                        tarefas={tarefas}
-                        carregarTarefa={setCarregarTarefa}
+                    tarefas={tarefas}
+                    recarregarTarefas={setCarregarTarefas}
                     />
                 </tbody>
             </Table>

@@ -30,9 +30,16 @@ function ConcluirTarefa(props) {
             }
             return tarefa;
         });
+
         localStorage['tarefas'] = JSON.stringify(tarefas);
         setExibirModal(false);
         props.recarregarTarefas(true);
+        // // Verifique se a função está sendo passada corretamente como uma função
+        // if (typeof props.recarregarTarefas === 'function') {
+        //     props.recarregarTarefas(true); // Chama a função recebida como prop
+        // } else {
+        //     console.error('A função recarregarTarefas não foi passada corretamente!');
+        // }
     }
 
     return (
@@ -68,7 +75,7 @@ function ConcluirTarefa(props) {
             </Modal>
         </span>
     );
-};
+}
 
 ConcluirTarefa.propTypes = {
     tarefa: PropTypes.object.isRequired,

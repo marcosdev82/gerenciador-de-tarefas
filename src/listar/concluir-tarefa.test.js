@@ -26,4 +26,16 @@ describe('Teste de componente de conclusão de tarefas', () => {
       // Asserção de que a tarefa está sendo renderizada corretamente
       expect(screen.getByText(nomeTarefa)).toBeInTheDocument();  
     });
+
+    it('Concluir tarefa', () => {
+        render(
+            <ConcluirTarefa 
+                tarefa={tarefa}
+                recarregarTarefas={() => false}
+            />
+        );
+
+        const testTestId = screen.getByTestId('btn-abrir-modal');
+        expect(testTestId).toHaveTextContent(nomeTarefa);
+    });
   });

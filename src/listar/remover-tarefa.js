@@ -42,7 +42,7 @@ function RemoverTarefa(props) {
                 <Modal.Body>
                     Deseja realmente remover a seguinte tarefa?
                     <br/>
-                    <strong>{props.remove.nome}</strong>
+                    <strong>{props.tarefa.nome}</strong>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary"

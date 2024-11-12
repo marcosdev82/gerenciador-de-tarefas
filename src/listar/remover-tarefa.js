@@ -13,6 +13,14 @@ function RemoverTarefa(props) {
         setExibirModal(true);
     }
 
+    function handleFecharModal() {
+        setExibirModal(false);
+    }
+
+    function handleRemoverTarea() {
+        
+    }
+
     return (
         <span>
             <Button variant="danger"
@@ -20,7 +28,28 @@ function RemoverTarefa(props) {
                 onClick={handleAbrirModal}
                 data-testid="btn-abrir-modal">
                     <FontAwesomeIcon icon={faTrashAlt} />
-                </Button>
+            </Button>
+            <Modal show={exibirModal} onHide={handleFecharModal} data-testid="modal">
+                <Modal.Header>
+                    <Modal.Title>Remover tarefa</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Deseja realmente remover a seguinte tarefa?
+                    <br/>
+                    <strong>{props.remove.nome}</strong>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary"
+                        onClick={handleRemoverTarea}
+                        data-testid="btn-remover">
+                            Sim
+                    </Button>
+                    <Button variant="light"
+                        onClick={handleFecharModal}>
+                            Não
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </span>
     );
 }

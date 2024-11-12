@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import ConcluirTarefa from "./concluir-tarefa";
 import Tarefa from "../models/tarefa.model";
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/react';
 
 
@@ -38,5 +38,19 @@ describe('Teste de componente de conclusão de tarefas', () => {
         const testTestId = screen.getByTestId('btn-abrir-modal');
         expect(testTestId).toHaveTextContent(nomeTarefa);
     });
+
+    it('Deve concluir uma tarefa', () => {
+      localStorage['tarefas'] = JSON.stringify([tarefa]);
+      render(
+          <ConcluirTarefa
+              tarefa={tarefa}
+              recarregarTarefas={() => false}
+          />
+      );
+      const tarefasDb =JSON.parse(localStorage['tarefas']);
+      fireEvent.click(screen.getAllByTestId('btn-abrir-modal'));
+      fireEvent.click(screen.getAllByTestId('btn-concluir'));
+      expect(tarefasDb[0].concluida).toBeTruthy();
+  });
 
 });

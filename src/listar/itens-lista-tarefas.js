@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import ConcluirTarefa from "./concluir-tarefa";
+import RemoverTarefa from "./remover-tarefa";
 
 function ItensListaTarefas(props){
 
@@ -33,6 +34,9 @@ function ItensListaTarefas(props){
                 >
                     <FontAwesomeIcon icon={faEdit} />
                 </Link>
+                <RemoverTarefa
+                    tarefa={tarefa}
+                    recarregarTarefas={props.recarregarTarefas} />
             </td>
         </tr>
     );

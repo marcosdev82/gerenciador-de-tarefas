@@ -38,4 +38,5 @@ describe('Teste de componente de conclusão de tarefas', () => {
         const testTestId = screen.getByTestId('btn-abrir-modal');
         expect(testTestId).toHaveTextContent(nomeTarefa);
     });
-  });
+
+});

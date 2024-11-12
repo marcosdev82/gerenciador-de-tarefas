@@ -1,50 +1,65 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import { ItensListaTarefas } from './itens-lista-tarefas';
-import { render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
+import { ItensListaTarefas } from './itens-lista-tarefas';
+import ConcluirTarefa from './concluir-tarefa';
 import Tarefa from '../models/tarefa.model';
 
 describe('Testes do componente que exibe um item da listagem de tarefas', () => {
 
-    const nomeTarefa = 'Tarefa 1';
-    const tarefa = new Tarefa(new Date().getTime(), nomeTarefa, false);
+  const nomeTarefa = 'Tarefa 1';
+  const tarefa = new Tarefa(new Date().getTime(), nomeTarefa, false);
 
-    it('Deve renderizar o componente corretamente', () => {
- 
-        const div = document.createElement('div');
-        const root = createRoot(div);  
-    
-        // Renderizando o componente com props
-        root.render(
-            <ItensListaTarefas 
-                tarefas={[]}
-                recarregarTarefas={() => false}
-            />
-        );
-    
-        // Verificando se o componente foi renderizado
-        // Exemplo básico: verificar se o componente renderizou sem erros, como por exemplo
-        // verificando um texto que deve estar presente na renderização.
-        expect(screen.getByText('Lista de Tarefas')).toBeInTheDocument();  // Ajuste conforme necessário
-    });
+  it('Deve renderizar o componente corretamente', () => {
+    render(
+      <ItensListaTarefas 
+        tarefas={[]}
+        recarregarTarefas={() => {}}
+      />
+    );
 
-    it('Deve exibir a tarefa', () => {
+    expect(screen.getByText('Lista de Tarefas')).toBeInTheDocument();
+  });
 
-        render(
-            <table>
-                <tbody>
-                    <ItensListaTarefas 
-                        tarefas={[tarefa]}
-                        recarregarTarefas={() => false}
-                    /> 
-                </tbody>
-            </table>
-        );
+  it('Deve exibir a tarefa', () => {
+    render(
+      <table>
+        <tbody>
+          <ItensListaTarefas 
+            tarefas={[tarefa]}
+            recarregarTarefas={() => {}}
+          />
+        </tbody>
+      </table>
+    );
 
-        const testTestId = screen.getByTestId('tarefa');
-        expect(testTestId).toHaveTextContent(nomeTarefa);
+    const testTestId = screen.getByTestId('tarefa');
+    expect(testTestId).toHaveTextContent(nomeTarefa);
+  });
 
-    });
+  it('Deve concluir uma tarefa', () => {
+    // Usando jest para mockar o localStorage
+    const setItemMock = jest.spyOn(Storage.prototype, 'setItem');
+    const tarefasMock = [tarefa];
+    localStorage.setItem('tarefas', JSON.stringify(tarefasMock));
+
+    render(
+      <ConcluirTarefa
+        tarefa={tarefa}
+        recarregarTarefas={() => {}}
+      />
+    );
+
+    // Simulando interações com o UI
+    fireEvent.click(screen.getByTestId('btn-abrir-modal'));
+    fireEvent.click(screen.getByTestId('btn-concluir'));
+
+    // Verificando se o estado foi alterado no localStorage
+    const tarefasDb = JSON.parse(localStorage.getItem('tarefas') || '[]');
+    expect(tarefasDb[0].concluida).toBeTruthy();
+
+    // Verificando se a função setItem foi chamada corretamente
+    expect(setItemMock).toHaveBeenCalledWith('tarefas', JSON.stringify([{ ...tarefa, concluida: true }]));
+  });
+
 });

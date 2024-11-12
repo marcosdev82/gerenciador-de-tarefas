@@ -7,7 +7,12 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 function RemoverTarefa(props) {
     return (
         <span>
-
+            <Button variant="danger"
+                className="btn-sm"
+                onClick={handleAbrirModal}
+                data-testid="btn-abrir-modal">
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                </Button>
         </span>
     );
 }

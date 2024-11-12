@@ -12,7 +12,7 @@ function RemoverTarefa(props) {
     );
 }
 
-RemoverTarefa.PropTypes = {
+RemoverTarefa.propTypes = {
     tarefa: PropTypes.object.isRequired,
     recarregarTarefas: PropTypes.func.isRequired
 }

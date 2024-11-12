@@ -1,11 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { ItensListaTarefas } from './itens-lista-tarefas';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Tarefa from '../models/tarefa.model';
-import ConcluirTarefa from "./concluir-tarefa";
 
 describe('Testes do componente que exibe um item da listagem de tarefas', () => {
 

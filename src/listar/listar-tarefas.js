@@ -4,24 +4,34 @@ import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ItensListaTarefas from './itens-lista-tarefas';
+import Paginacao from './paginacao';
 
 function ListTarefas() {
+    const ITEMS_POR_PAGINA = 4;
 
-    const [tarefas, setTarefas] = useState([])
-    const [carregarTarefa, setCarregarTarefas] = useState(true)
+    const [tarefas, setTarefas] = useState([]);
+    const [carregarTarefa, setCarregarTarefas] = useState(true);
+    const [totalItems, setTotalItems] = useState(0);
+    const [paginaAtual, setPaginaAtual] = useState(1);
 
     useEffect(() => {
         function obterTarefa() {
             const tarefasDb = localStorage['tarefas'];
-            let ListTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
-            setTarefas(ListTarefas);
+            let listTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+            setTotalItems(listTarefas.length);
+            setTarefas(listTarefas.slice((paginaAtual - 1) * ITEMS_POR_PAGINA, paginaAtual * ITEMS_POR_PAGINA));
         }
 
         if (carregarTarefa) {
             obterTarefa();
             setCarregarTarefas(false);
         }
-    },[carregarTarefa]);
+    }, [carregarTarefa, paginaAtual]);
+
+    function handleMudarPagina(pagina) {
+        setPaginaAtual(pagina);
+        setCarregarTarefas(true);
+    }
 
     return (
         <div className="text-center">
@@ -31,23 +41,29 @@ function ListTarefas() {
                     <tr>
                         <th>Tarefa</th>
                         <th>
-                            <Link 
-                                to="/cadastrar" 
+                            <Link
+                                to="/cadastrar"
                                 className="btn btn-success btn-small m-1"
                                 data-testid="btn-nova-tarefa"
                             >
-                                <FontAwesomeIcon icon={faPlus}/> Nova tarefa
+                                <FontAwesomeIcon icon={faPlus} /> Nova tarefa
                             </Link>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <ItensListaTarefas  
-                    tarefas={tarefas}
-                    recarregarTarefas={setCarregarTarefas}
+                    <ItensListaTarefas
+                        tarefas={tarefas}
+                        recarregarTarefas={setCarregarTarefas}
                     />
                 </tbody>
             </Table>
+            <Paginacao
+                totalItems={totalItems}
+                itemsPorPagina={ITEMS_POR_PAGINA}
+                paginaAtual={paginaAtual}
+                mudarPagina={handleMudarPagina}
+            />
         </div>
     );
 }

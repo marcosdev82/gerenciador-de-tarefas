@@ -40,6 +40,15 @@ function Paginacao(props) {
         )
     }
 
+    function gerarUltimoItem(numPaginas){
+        return (
+            <Pagination.Last
+                key="pagLast"
+                onClick={() => props.mudarPagina(numPaginas)}
+                disabled={props.paginaAtual === numPaginas} />
+        )
+    }
+
     function obterPaginacao(){
         const numPaginas = Math.ceil(props.totalitems / props.itemsPorPagina)
         let items = [];
@@ -48,7 +57,8 @@ function Paginacao(props) {
         for (let pagina = 1; pagina <= numPaginas; pagina++){
             items.push(gerarItemNumerico(pagina))
         }
-        items.push(gerarProximoItem());
+        items.push(gerarProximoItem(numPaginas));
+        items.push(gerarUltimoItem(numPaginas));
         return items;
     }
 

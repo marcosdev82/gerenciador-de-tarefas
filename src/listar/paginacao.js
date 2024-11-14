@@ -22,10 +22,28 @@ function Paginacao(props) {
         )
     }
 
+    function gerarItemNumerico(pagina){
+        return (
+            <Pagination.Item
+                key={pagina}
+                onClick={() => props.mudarPagina(props.paginaAtual - 1)}
+                disabled={props.mudarPagina(pagina)} />
+        )
+    }
+
+    function gerarProximoItem(){
+        
+    }
+
     function obterPaginacao(){
+        const numPaginas = Math.ceil(props.totalitems / props.itemsPorPagina)
         let items = [];
         items.push(gerarPrimeiroItem());
         items.push(gerarItemAnterior());
+        for (let pagina = 1; pagina <= numPaginas; pagina++){
+            items.push(gerarItemNumerico(pagina))
+        }
+        items.push(gerarProximoItem());
         return items;
     }
 
@@ -38,8 +56,8 @@ function Paginacao(props) {
 }
 
 Paginacao.propTypes = {
-    totalItens: PropTypes.number.isRequired,
-    intensPorPagina: PropTypes.number.isRequired,
+    totalitems: PropTypes.number.isRequired,
+    itemsPorPagina: PropTypes.number.isRequired,
     paginaAtual: PropTypes.number.isRequired,
     mudarPagina: PropTypes.func.isRequired
 }

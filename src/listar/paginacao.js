@@ -13,9 +13,19 @@ function Paginacao(props) {
         );
     }
 
+    function gerarItemAnterior(){
+        return (
+            <Pagination.Prev
+                key="pagPrev"
+                onClick={() => props.paginaAtual - 1}
+                disabled={props.paginaAtual === 1} />
+        )
+    }
+
     function obterPaginacao(){
         let items = [];
         items.push(gerarPrimeiroItem());
+        items.push(gerarItemAnterior());
         return items;
     }
 

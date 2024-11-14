@@ -31,8 +31,13 @@ function Paginacao(props) {
         )
     }
 
-    function gerarProximoItem(){
-        
+    function gerarProximoItem(numPaginas){
+        return (
+            <Pagination.Next
+                key="pagNext"
+                onClick={() => props.mudarPagina(props.paginaAtual + 1)}
+                disabled={props.paginaAtual === numPaginas} />
+        )
     }
 
     function obterPaginacao(){

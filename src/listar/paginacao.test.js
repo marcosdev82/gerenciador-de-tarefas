@@ -1,0 +1,5 @@
+import React from 'react'
+import { ReactDOM } from 'react-dom'
+import Paginacao from './paginacao'
+import { render, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom'

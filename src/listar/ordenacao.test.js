@@ -33,6 +33,22 @@ describe('Teste do componente de ornação', () => {
         expect(faSortDown).toHaveClass('hidden')
     })
 
+    it('Deve exibir a ordernação descendente', () => {
+      
+        render(<Ordenacao 
+            ordenarAsc={false}
+            ordenarDesc={true}
+        />)
+
+        const faSort = screen.getByTestId('faSort')
+        const faSortUp = screen.getByTestId('faSortUp')
+        const faSortDown = screen.getByTestId('faSortDown')
+
+        expect(faSort).toHaveClass('hidden')
+        expect(faSortUp).toHaveClass('hidden')
+        expect(faSortDown).not.toHaveClass('hidden')
+    })
+
 
 
 });

@@ -1,8 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import ConcluirTarefa from "./concluir-tarefa";
-import Tarefa from "../models/tarefa.model";
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/react';
 import Ordenacao from "./ordenacao";
 
@@ -19,5 +16,23 @@ describe('Teste do componente de ornação', () => {
         unmount(); // Desmonta o componente após o teste
 
     })
+
+    it('Deve exibir a ordernação padrão', () => {
+      
+        render(<Ordenacao 
+            ordenarAsc={false}
+            ordenarDesc={false}
+        />)
+
+        const faSort = screen.getByTestId('faSort')
+        const faSortUp = screen.getByTestId('faSortUp')
+        const faSortDown = screen.getByTestId('faSortDown')
+
+        expect(faSort).not.toHaveClass('hidden')
+        expect(faSortUp).toHaveClass('hidden')
+        expect(faSortDown).toHaveClass('hidden')
+    })
+    
+
 
 });

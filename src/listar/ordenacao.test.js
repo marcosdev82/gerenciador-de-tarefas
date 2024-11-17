@@ -17,10 +17,10 @@ describe('Teste do componente de ornação', () => {
 
     })
 
-    it('Deve exibir a ordernação padrão', () => {
+    it('Deve exibir a ordernação acendente', () => {
       
         render(<Ordenacao 
-            ordenarAsc={false}
+            ordenarAsc={true}
             ordenarDesc={false}
         />)
 
@@ -28,11 +28,11 @@ describe('Teste do componente de ornação', () => {
         const faSortUp = screen.getByTestId('faSortUp')
         const faSortDown = screen.getByTestId('faSortDown')
 
-        expect(faSort).not.toHaveClass('hidden')
-        expect(faSortUp).toHaveClass('hidden')
+        expect(faSort).toHaveClass('hidden')
+        expect(faSortUp).not.toHaveClass('hidden')
         expect(faSortDown).toHaveClass('hidden')
     })
-    
+
 
 
 });

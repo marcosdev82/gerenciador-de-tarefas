@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ItensListaTarefas from './itens-lista-tarefas';
 import Paginacao from './paginacao';
+import Ordenacao from './ordenacao';
 
 function ListTarefas() {
     const ITEMS_POR_PAGINA = 4;
@@ -68,6 +69,12 @@ function ListTarefas() {
                                 href='/' 
                                 onClick={handleOrdenar}>
                                     Tarefa
+                                    &nbsp;
+                                    <Ordenacao 
+                                        ordenarAsc={ordenarAsc}
+                                        ordenarDesc={ordenarDesc}
+                                    />
+
                                 
                             </a>
                         </th>

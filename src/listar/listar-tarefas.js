@@ -60,6 +60,11 @@ function ListTarefas() {
         setCarregarTarefas(true);
     }
 
+    function handleFiltrar(event) {
+        setFiltroTarefa(event.target.value);
+        setCarregarTarefas(true)
+    }
+
     return (
         <div className="text-center">
             <h3>Tarefas a fazer</h3>
@@ -94,7 +99,9 @@ function ListTarefas() {
                                 type="text"
                                 value={filtroTarefa}
                                 onChange={handleFiltrar}
-                                data-testid="text-tarefa" />
+                                data-testid="text-tarefa" 
+                                className="filtro-tarefa"
+                            />
                         </th>
                     </tr>
                 </thead>

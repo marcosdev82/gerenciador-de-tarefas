@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ItensListaTarefas from './itens-lista-tarefas';
 import Paginacao from './paginacao';
 import Ordenacao from './ordenacao';
+import Tarefa from '../models/tarefa.model';
 
 function ListTarefas() {
     const ITEMS_POR_PAGINA = 4;
@@ -73,9 +74,7 @@ function ListTarefas() {
                                     <Ordenacao 
                                         ordenarAsc={ordenarAsc}
                                         ordenarDesc={ordenarDesc}
-                                    />
-
-                                
+                                    />                 
                             </a>
                         </th>
                         <th>
@@ -86,6 +85,15 @@ function ListTarefas() {
                             >
                                 <FontAwesomeIcon icon={faPlus} /> Nova tarefa
                             </Link>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <Form.Control
+                                type="text"
+                                value={filtroTarefa}
+                                onChange={handleFiltrar}
+                                data-testid="text-tarefa" />
                         </th>
                     </tr>
                 </thead>

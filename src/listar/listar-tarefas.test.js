@@ -6,6 +6,11 @@ import { render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 describe('Teste do componente de listagem de tarefas', () => {
+
+    const primeiraTarefa = 'Primeira tarefa';
+    const segundaTarefa = 'Segunda tarefa';
+    const terceiraTarefa = 'Terceira tarefa';
+
     it('Deve renderizar o componente sem erros', () => {
         const div = document.createElement('div');
         const root = createRoot(div); 

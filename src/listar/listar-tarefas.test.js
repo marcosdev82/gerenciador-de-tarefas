@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import ListTarefas from "./listar-tarefas";
 import Tarefa from '../models/tarefa.model';
-import { render, fireEvent} from '@testing-library/react';
+import { render, fireEvent, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 describe('Teste do componente de listagem de tarefas', () => {
@@ -20,7 +20,20 @@ describe('Teste do componente de listagem de tarefas', () => {
     });
 
     afterEach(() => {
-        delete localStorage['tarefa']
+        delete localStorage['tarefa'];
+    });
+    
+    it('Deve renderizar 3 tarefas', () => {
+
+        render(
+            <ListTarefas />
+        );
+
+        const tabela = screen.getByTestId('text-tarefa')
+        expect(tabela).toHaveTextContent(primeiraTarefa);
+        expect(tabela).toHaveTextContent(segundaTarefa);
+        expect(tabela).toHaveTextContent(terceiraTarefa);
+        
     });
 
     it('Deve renderizar o componente sem erros', () => {

@@ -17,6 +17,7 @@ function ListTarefas() {
     const [paginaAtual, setPaginaAtual] = useState(1);
     const [ordenarAsc, setOrdenarAsc] = useState(false);
     const [ordenarDesc, setOrdenarDesc] = useState(false);
+    const [filtroTarefa, setFiltroTarefa] = useState('');
 
     useEffect(() => {
         function obterTarefa() {

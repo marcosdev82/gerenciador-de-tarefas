@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form } from 'react-bootstrap'; // Corrigido: O componente `Form` é do React-Bootstrap, não do React Router.
+import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ItensListaTarefas from './itens-lista-tarefas';
 import Paginacao from './paginacao';
 import Ordenacao from './ordenacao';
-import Tarefa from '../models/tarefa.model';
 
 function ListTarefas() {
     const ITEMS_POR_PAGINA = 4;
@@ -21,29 +21,36 @@ function ListTarefas() {
 
     useEffect(() => {
         function obterTarefa() {
-            const tarefasDb = localStorage['tarefas'];
+            const tarefasDb = localStorage.getItem('tarefas'); // Alterado para `getItem` para melhor legibilidade.
             let listTarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
-            // filtrar 
+            
+            // Filtrar tarefas
             listTarefas = listTarefas.filter(
-                t => t.nome.toLowerCase().indexOf(filtroTarefa.toLocaleLowerCase()) === 0
-                // t => t.nome.toLowerCase().indexOf(filtroTarefa.toLocaleLowerCase()) >= 0
+                (t) => t.nome.toLowerCase().startsWith(filtroTarefa.toLowerCase())
             );
-            // ordenar
+
+            // Ordenar tarefas
             if (ordenarAsc) {
-                listTarefas.sort((t1, t2) => (t1.nome.toLowerCase() > t2.nome.toLowerCase() ? 1 : -1));
+                listTarefas.sort((t1, t2) => t1.nome.localeCompare(t2.nome));
             } else if (ordenarDesc) {
-                listTarefas.sort((t1, t2) => (t1.nome.toLowerCase() < t2.nome.toLowerCase() ? 1 : -1));
+                listTarefas.sort((t1, t2) => t2.nome.localeCompare(t1.nome));
             }
 
+            // Atualizar estados
             setTotalItems(listTarefas.length);
-            setTarefas(listTarefas.slice((paginaAtual - 1) * ITEMS_POR_PAGINA, paginaAtual * ITEMS_POR_PAGINA));
+            setTarefas(
+                listTarefas.slice(
+                    (paginaAtual - 1) * ITEMS_POR_PAGINA,
+                    paginaAtual * ITEMS_POR_PAGINA
+                )
+            );
         }
 
         if (carregarTarefa) {
             obterTarefa();
             setCarregarTarefas(false);
         }
-    }, [carregarTarefa, paginaAtual, ordenarAsc, ordenarDesc]);
+    }, [carregarTarefa, paginaAtual, ordenarAsc, ordenarDesc, filtroTarefa]);
 
     function handleMudarPagina(pagina) {
         setPaginaAtual(pagina);
@@ -54,12 +61,10 @@ function ListTarefas() {
         event.preventDefault();
         if (!ordenarAsc && !ordenarDesc) {
             setOrdenarAsc(true);
-            setOrdenarDesc(false);
         } else if (ordenarAsc) {
             setOrdenarAsc(false);
             setOrdenarDesc(true);
         } else {
-            setOrdenarAsc(false);
             setOrdenarDesc(false);
         }
         setCarregarTarefas(true);
@@ -67,7 +72,7 @@ function ListTarefas() {
 
     function handleFiltrar(event) {
         setFiltroTarefa(event.target.value);
-        setCarregarTarefas(true)
+        setCarregarTarefas(true);
     }
 
     return (
@@ -77,15 +82,12 @@ function ListTarefas() {
                 <thead>
                     <tr>
                         <th>
-                            <a  
-                                href='/' 
-                                onClick={handleOrdenar}>
-                                    Tarefa
-                                    &nbsp;
-                                    <Ordenacao 
-                                        ordenarAsc={ordenarAsc}
-                                        ordenarDesc={ordenarDesc}
-                                    />                 
+                            <a href="/" onClick={handleOrdenar}>
+                                Tarefa&nbsp;
+                                <Ordenacao
+                                    ordenarAsc={ordenarAsc}
+                                    ordenarDesc={ordenarDesc}
+                                />
                             </a>
                         </th>
                         <th>
@@ -99,12 +101,12 @@ function ListTarefas() {
                         </th>
                     </tr>
                     <tr>
-                        <th>
+                        <th colSpan={2}>
                             <Form.Control
                                 type="text"
                                 value={filtroTarefa}
                                 onChange={handleFiltrar}
-                                data-testid="text-tarefa" 
+                                data-testid="text-tarefa"
                                 className="filtro-tarefa"
                             />
                         </th>

@@ -17,7 +17,11 @@ describe('Teste do componente de listagem de tarefas', () => {
             new Tarefa(2, segundaTarefa, false),
             new Tarefa(3, terceiraTarefa, false)
         ]);
-    })
+    });
+
+    afterEach(() => {
+        delete localStorage['tarefa']
+    });
 
     it('Deve renderizar o componente sem erros', () => {
         const div = document.createElement('div');

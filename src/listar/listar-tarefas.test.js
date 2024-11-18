@@ -11,6 +11,14 @@ describe('Teste do componente de listagem de tarefas', () => {
     const segundaTarefa = 'Segunda tarefa';
     const terceiraTarefa = 'Terceira tarefa';
 
+    beforeEach(() => {
+        localStorage['tarefas'] = JSON.stringify([
+            new Tarefa(1, primeiraTarefa, false),
+            new Tarefa(2, segundaTarefa, false),
+            new Tarefa(3, terceiraTarefa, false)
+        ]);
+    })
+
     it('Deve renderizar o componente sem erros', () => {
         const div = document.createElement('div');
         const root = createRoot(div); 

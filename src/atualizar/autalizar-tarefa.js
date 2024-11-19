@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {Button, Form, Container, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 function AtualizarTarefa(props) {
 
     const navigate = useNavigate(); // Utilize o hook useNavigate
+
+    const [exibirModal, setExibirModal] = useState(true)
 
     function voltar(event) {
         event.preventDefault();

@@ -7,10 +7,14 @@ function AtualizarTarefa(props) {
 
     const navigate = useNavigate(); // Utilize o hook useNavigate
 
-    const [exibirModal, setExibirModal] = useState(true)
+    const [exibirModal, setExibirModal] = useState(false)
 
     function voltar(event) {
         event.preventDefault();
+        navigate('/');
+    }
+
+    function handleFecharModal(){
         navigate('/');
     }
 
@@ -40,6 +44,19 @@ function AtualizarTarefa(props) {
                         <Link className="btn btn-light my-1 mx-1" onClick={voltar}>Voltar</Link>
                     </Form.Group>
                 </Form>
+                <Modal show={exibirModal} onHide={handleFecharModal} data-testid="modal">
+                    <Modal.Header closeButton>
+                        <Modal.Title>Success</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Tarefa Atuaizada com sucesso!
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="success" onClick={handleFecharModal}>
+                            Continuar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </Container>
         </Container>
     );

@@ -7,6 +7,12 @@ import '@testing-library/jest-dom';
 
 describe('Teste do componente de listagem de tarefas', () => {
 
+    it('Deve renderizar o componente sem erros', () => {
+        const div = document.createElement('div');
+        const root = createRoot(div); 
+        root.render(<ListTarefas />);
+    });
+
     const primeiraTarefa = 'Primeira tarefa';
     const segundaTarefa = 'Segunda tarefa';
     const terceiraTarefa = 'Terceira tarefa';
@@ -25,20 +31,25 @@ describe('Teste do componente de listagem de tarefas', () => {
     
     it('Deve renderizar 3 tarefas', () => {
 
-        render(
-            <ListTarefas />
-        );
-
-        const tabela = screen.getByTestId('text-tarefa')
+        render(<ListTarefas />);
+        const tabela = screen.getByTestId('tabela')
         expect(tabela).toHaveTextContent(primeiraTarefa);
         expect(tabela).toHaveTextContent(segundaTarefa);
         expect(tabela).toHaveTextContent(terceiraTarefa);
         
     });
 
-    it('Deve renderizar o componente sem erros', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div); 
-        root.render(<ListTarefas />);
+    it('Deve filtrar os dados da tabela de tarefas', () => {
+         
+        render(<ListTarefas />);
+        const tabela = screen.getByTestId('text-tarefa')
+
+        fireEvent.change(tabela, { target: {value: primeiraTarefa}});
+        expect(tabela).toHaveTextContent(primeiraTarefa);
+        expect(tabela).not.toHaveTextContent(segundaTarefa);
+        expect(tabela).not.toHaveTextContent(terceiraTarefa);
+
     });
+
+   
 });

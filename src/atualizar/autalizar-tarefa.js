@@ -7,7 +7,8 @@ function AtualizarTarefa(props) {
 
     const navigate = useNavigate(); // Utilize o hook useNavigate
 
-    const [exibirModal, setExibirModal] = useState(false)
+    const [exibirModal, setExibirModal] = useState(false);
+    const [formValidado, setFormValidado] = useState(false);
 
     function voltar(event) {
         event.preventDefault();
@@ -18,11 +19,15 @@ function AtualizarTarefa(props) {
         navigate('/');
     }
 
+    function atualizar(event){
+        event.preventDefault();
+    }
+
     return  (
         <Container>
             <h3 className="text-center">Atualizar</h3>
             <Container>
-                <Form noValidate>
+                <Form onSubmit={atualizar} noValidate validated={formValidado}>
                     <Form.Group>
                         <Form.Label>Trefa</Form.Label>
                         <Form.Control

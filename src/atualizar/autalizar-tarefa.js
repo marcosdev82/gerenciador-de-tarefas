@@ -9,6 +9,7 @@ function AtualizarTarefa(props) {
 
     const [exibirModal, setExibirModal] = useState(false);
     const [formValidado, setFormValidado] = useState(false);
+    const [tarefa, setTarefa] = useState('');
 
     function voltar(event) {
         event.preventDefault();
@@ -21,6 +22,10 @@ function AtualizarTarefa(props) {
 
     function atualizar(event){
         event.preventDefault();
+    }
+
+    function handleTxtTarefa(event){
+        setTarefa(event.target.value)
     }
 
     return  (
@@ -36,7 +41,10 @@ function AtualizarTarefa(props) {
                             minLength="5"
                             maxLength="100"
                             required
-                            data-testid="txt-tarefa" />
+                            data-testid="txt-tarefa"
+                            value={tarefa} 
+                            onChange={handleTxtTarefa}
+                        />
                         <Form.Control.Feedback type="invalid">
                             A tarefa deve conter aomenos 5 caracteres.
                         </Form.Control.Feedback>

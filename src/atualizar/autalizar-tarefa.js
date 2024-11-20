@@ -22,6 +22,14 @@ function AtualizarTarefa(props) {
 
     function atualizar(event){
         event.preventDefault();
+        setFormValidado(true);
+        if (event.currentTarget.checkValidity() === true) {
+            // ontém as tarefas
+
+            // persistir tarefa atualizada
+
+            setExibirModal(true)
+        }
     }
 
     function handleTxtTarefa(event){
@@ -34,7 +42,7 @@ function AtualizarTarefa(props) {
             <Container>
                 <Form onSubmit={atualizar} noValidate validated={formValidado}>
                     <Form.Group>
-                        <Form.Label>Trefa</Form.Label>
+                        <Form.Label>Tarefa</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Digite a tarefa"

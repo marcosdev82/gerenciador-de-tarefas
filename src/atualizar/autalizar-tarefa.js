@@ -1,45 +1,49 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import {Button, Form, Container, Modal } from 'react-bootstrap';
-import { Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Button, Form, Container, Modal } from "react-bootstrap";
 
-function AtualizarTarefa(props) {
-
-    const navigate = useNavigate(); // Utilize o hook useNavigate
+function AtualizarTarefa() {
+    const { id } = useParams(); // Obtém o parâmetro `id` da URL
+    const navigate = useNavigate();
 
     const [exibirModal, setExibirModal] = useState(false);
     const [formValidado, setFormValidado] = useState(false);
     const [tarefa, setTarefa] = useState('');
     const [carregarTarefa, setCarregarTarefa] = useState(true);
 
-    function voltar(event) {
-        event.preventDefault();
-        navigate('/');
-    }
+    useEffect(() => {
+        if (carregarTarefa) {
+            const tarefasDd = localStorage.getItem('tarefas');
+            const tarefas = tarefasDd ? JSON.parse(tarefasDd) : [];
+            const tarefaEncontrada = tarefas.find(t => t.id === parseInt(id, 10));
 
-    function handleFecharModal(){
-        navigate('/');
-    }
+            if (tarefaEncontrada && tarefaEncontrada.nome) {
+                setTarefa(tarefaEncontrada.nome);
+            } else {
+                console.warn("Tarefa não encontrada ou inválida.");
+                setTarefa('');
+            }
+            setCarregarTarefa(false);
+        }
+    }, [carregarTarefa, id]);
 
-    function atualizar(event){
+    function atualizar(event) {
         event.preventDefault();
         setFormValidado(true);
-        if (event.currentTarget.checkValidity() === true) {
-            // ontém as tarefas
-
-            // persistir tarefa atualizada
-
-            setExibirModal(true)
-        }
+        
     }
 
-    function handleTxtTarefa(event){
-        setTarefa(event.target.value)
+    function handleTxtTarefa(event) {
+        setTarefa(event.target.value);
     }
 
-    return  (
+    function handleFecharModal() {
+        navigate("/");
+    }
+
+    return (
         <Container>
-            <h3 className="text-center">Atualizar</h3>
+            <h3 className="text-center">Atualizar Tarefa</h3>
             <Container>
                 <Form onSubmit={atualizar} noValidate validated={formValidado}>
                     <Form.Group>
@@ -51,28 +55,28 @@ function AtualizarTarefa(props) {
                             maxLength="100"
                             required
                             data-testid="txt-tarefa"
-                            value={tarefa} 
+                            value={tarefa || ""}
                             onChange={handleTxtTarefa}
                         />
                         <Form.Control.Feedback type="invalid">
-                            A tarefa deve conter aomenos 5 caracteres.
+                            A tarefa deve conter ao menos 5 caracteres.
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="text-center">
-                        <Button variant="success" type="sbmit" data-testid="btn-atualizar">
+                        <Button variant="success" type="submit" data-testid="btn-atualizar">
                             Atualizar
                         </Button>
                         &nbsp;
-                        <Link className="btn btn-light my-1 mx-1" onClick={voltar}>Voltar</Link>
+                        <Button variant="light" onClick={() => navigate("/")}>
+                            Voltar
+                        </Button>
                     </Form.Group>
                 </Form>
                 <Modal show={exibirModal} onHide={handleFecharModal} data-testid="modal">
                     <Modal.Header closeButton>
-                        <Modal.Title>Success</Modal.Title>
+                        <Modal.Title>Sucesso</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                        Tarefa Atuaizada com sucesso!
-                    </Modal.Body>
+                    <Modal.Body>Tarefa atualizada com sucesso!</Modal.Body>
                     <Modal.Footer>
                         <Button variant="success" onClick={handleFecharModal}>
                             Continuar

@@ -7,11 +7,11 @@ import CadastrarTarefa from './cadastrar/cadastar-tarefa';
 import AtualizarTarefa from './atualizar/autalizar-tarefa'
 
 
-const routes = [
-  { path: "/", element: <ListTarefas /> },
-  { path: "/cadastrar", element: <CadastrarTarefa /> },
-  { path: "/atualizar/:id", element: <AtualizarTarefa /> }
-];
+ const routes = [
+    { path: "/", element: <ListTarefas /> },
+    { path: "/cadastrar", element: <CadastrarTarefa /> },
+    { path: "/atualizar/:id", element: <AtualizarTarefa /> },
+  ];
 
 function GerenciadorDeTarefas() {
   return (

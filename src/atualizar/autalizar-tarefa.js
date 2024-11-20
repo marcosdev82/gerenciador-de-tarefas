@@ -13,7 +13,7 @@ function AtualizarTarefa() {
 
     useEffect(() => {
         if (carregarTarefa) {
-            const tarefasDd = localStorage.getItem('tarefas');
+            const tarefasDd = localStorage['tarefas'];
             const tarefas = tarefasDd ? JSON.parse(tarefasDd) : [];
             const tarefaEncontrada = tarefas.find(t => t.id === parseInt(id, 10));
 
@@ -30,6 +30,21 @@ function AtualizarTarefa() {
     function atualizar(event) {
         event.preventDefault();
         setFormValidado(true);
+       if (event.currentTarget.checkValidity()) {
+            // obtém as tarefas
+            const tarefaDb = localStorage['tarefas'];
+            let tarefas = tarefaDb ? JSON.parse(tarefaDb) : [];
+            // persistir a tarefa atualizada
+            tarefas = tarefas.map(tarefaObj => {
+                if (tarefaObj.id === parseInt(id, 10)){
+                    tarefaObj.nome = tarefa;
+                }
+                return tarefaObj;
+            });
+            
+            localStorage['tarefas'] = JSON.stringify(tarefas);
+            setExibirModal(true);
+        }
         
     }
 

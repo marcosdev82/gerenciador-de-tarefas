@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {Button, Form, Container, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ function AtualizarTarefa(props) {
     const [exibirModal, setExibirModal] = useState(false);
     const [formValidado, setFormValidado] = useState(false);
     const [tarefa, setTarefa] = useState('');
+    const [carregarTarefa, setCarregarTarefa] = useState(true);
 
     function voltar(event) {
         event.preventDefault();

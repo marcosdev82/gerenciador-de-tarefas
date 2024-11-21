@@ -4,7 +4,7 @@ import './gerenciador-de-tarefas.css';
 
 import ListTarefas from './listar/listar-tarefas';
 import CadastrarTarefa from './cadastrar/cadastar-tarefa';
-import AtualizarTarefa from './atualizar/autalizar-tarefa'
+import AtualizarTarefa from './atualizar/atualizar-tarefa';
 
 
  const routes = [

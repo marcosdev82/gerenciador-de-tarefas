@@ -19,10 +19,7 @@ function AtualizarTarefa() {
 
             if (tarefaEncontrada && tarefaEncontrada.nome) {
                 setTarefa(tarefaEncontrada.nome);
-            } else {
-                console.warn("Tarefa não encontrada ou inválida.");
-                setTarefa('');
-            }
+            }  
             setCarregarTarefa(false);
         }
     }, [carregarTarefa, id]);

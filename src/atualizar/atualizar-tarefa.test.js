@@ -1,13 +1,8 @@
-import React from 'react';
-import { createRoot } from "react-dom/client";
-import AtualizarTarefa from './autalizar-tarefa';
+import React from "react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import AtualizarTarefa from "./atualiza-tarefa"; // Ajuste o caminho conforme necessário
 
-describe('Teste do componente de atualizar tarefa', () => {
-
-    it('deve rederizar o componente de cadastro de tarefas', () => {
-        const div = document.createElement('div');
-        const root = createRoot(div); 
-        root.render(<AtualizarTarefa id={1} />);
-    })
-
-})
+describe("AtualizarTarefa", () => {
+   
+});

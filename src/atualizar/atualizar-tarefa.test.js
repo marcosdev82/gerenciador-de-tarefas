@@ -20,5 +20,4 @@ describe("Teste do componente de atualização de tarefas", () => {
         root.render(<AtualizarTarefa id={tarefaid}/>);
     });
 
-
 });

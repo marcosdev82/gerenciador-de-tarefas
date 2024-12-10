@@ -10,7 +10,6 @@ function AtualizarTarefa() {
     const [formValidado, setFormValidado] = useState(false);
     const [tarefa, setTarefa] = useState('');
     const [carregarTarefa, setCarregarTarefa] = useState(true);
-    const [exibirModalError, setExibirModalErro] = useState(false);
 
     useEffect(() => {
         if (carregarTarefa) {
@@ -54,10 +53,6 @@ function AtualizarTarefa() {
         navigate("/");
     }
 
-    function handleFecharModalError() {
-        setExibirModalErro(false);
-    }
-
     return (
         <Container>
             <h3 className="text-center">Atualizar Tarefa</h3>
@@ -97,22 +92,6 @@ function AtualizarTarefa() {
                     <Modal.Footer>
                         <Button variant="success" onClick={handleFecharModal}>
                             Continuar
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-                <Modal show={exibirModalError} onHide={handleFecharModalError} data-testid="modal">
-                    <Modal.Header closeButton>
-                        <Modal.Title>Error</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        Erro ao atualizar tarefa, tente novamente em instates.
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button
-                            variant="warning"
-                            onClick={handleFecharModalError}
-                            >
-                                Fechar
                         </Button>
                     </Modal.Footer>
                 </Modal>

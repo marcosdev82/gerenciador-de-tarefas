@@ -10,6 +10,7 @@ function AtualizarTarefa() {
     const [formValidado, setFormValidado] = useState(false);
     const [tarefa, setTarefa] = useState('');
     const [carregarTarefa, setCarregarTarefa] = useState(true);
+    const [exibirModalError, setExibirModalErro] = useState(false);
 
     useEffect(() => {
         if (carregarTarefa) {

@@ -54,6 +54,10 @@ function AtualizarTarefa() {
         navigate("/");
     }
 
+    function handleFecharModalError() {
+        setExibirModalErro(false);
+    }
+
     return (
         <Container>
             <h3 className="text-center">Atualizar Tarefa</h3>
